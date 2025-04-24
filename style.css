@@ -1,0 +1,150 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ecebeb;
+    margin: 0;
+}
+
+body.fade-out {
+    animation: fadeOut 1s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+.progress-container {
+    width: 80%;
+    background-color: #bbbbbb;
+    border-radius: 25px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* acima dos corações */
+}
+
+.progress-bar {
+    height: 30px;
+    width: 0;
+    background-color: #f15cd1;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 25px 0 0 25px;
+    position: relative;    
+    z-index: 3;            
+    transition: width 0.3s ease;  
+}
+
+.SpaceButton {
+    user-select: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 121, 233);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    padding: 20px 30px;
+    font-size: 20px;
+    
+}
+
+.SpaceButton.clicked {
+    animation: click-scale 0.2s ease-out forwards;
+}
+
+@keyframes click-scale {
+    0%   { transform: translate(-50%, -50%) scale(1); }
+    50%  { transform: translate(-50%, -50%) scale(0.9); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+#container {
+    position: relative;
+    overflow: visible;
+}
+
+#container,
+.SpaceButton {
+    position: relative;
+    z-index: 1; 
+}
+
+/* pure‑CSS zig‑zag heart animation */
+.heart {
+    --heart-size: 20px;
+    --heart-duration: 6s;    /* duração padrão mais lenta */
+    --heart-delay: 0s;
+
+    position: fixed;
+    bottom: 0;
+    /* left é definido em JS */
+    width: var(--heart-size);
+    height: var(--heart-size);
+    background-color: red;
+    /* primeiro translate no eixo da tela, depois rotaciona */
+    transform: rotate(-45deg);        /* inclinação fixa */
+    pointer-events: none;
+    opacity: 0;
+    animation: floatS var(--heart-duration, 6s) linear both;
+}
+
+/* cria formato de coração */
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: var(--heart-size);
+    height: var(--heart-size);
+    background-color: inherit;
+    border-radius: 50%;
+}
+.heart::before {
+    top: -50%;
+    left: 0;
+}
+.heart::after {
+    top: 0;
+    left: 50%;
+}
+
+@keyframes floatS {
+    0% {
+        opacity: 1;
+        transform: translate(0,   0   ) rotate(-45deg);
+    }
+    12.5% {
+        transform: translate(20px, -12.5vh) rotate(-45deg);
+    }
+    25% {
+        transform: translate(-20px,-25vh ) rotate(-45deg);
+    }
+    37.5% {
+        transform: translate(20px, -37.5vh) rotate(-45deg);
+    }
+    50% {
+        transform: translate(-20px,-50vh ) rotate(-45deg);
+    }
+    62.5% {
+        transform: translate(20px, -62.5vh) rotate(-45deg);
+    }
+    75% {
+        transform: translate(-20px,-75vh ) rotate(-45deg);
+    }
+    87.5% {
+        transform: translate(20px, -87.5vh) rotate(-45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0,   -100vh) rotate(-45deg);
+    }
+}
