@@ -99,7 +99,7 @@ body {
   animation: moving-flower-1 4s linear infinite;
 }
 .flower--1 .flower__line {
-  height: 70vmin;
+  height: 80vmin;
   animation-delay: 0.3s;
 }
 .flower--1 .flower__line__leaf--1 {
@@ -121,12 +121,12 @@ body {
   animation: blooming-leaf-left var(--fl-speed) 2s backwards;
 }
 .flower--2 {
-  left: 50%;
+  left: 60%;
   transform: rotate(30deg);
   animation: moving-flower-2 4s linear infinite;
 }
 .flower--2 .flower__line {
-  height: 60vmin;
+  height: 55vmin;
   animation-delay: 0.8s;
 }
 .flower--2 .flower__line__leaf--1 {
@@ -186,7 +186,7 @@ body {
   transform: translate(-50%, -100%);
   width: 8vmin;
   height: 8vmin;
-  background-color: #6bf0ff;
+  background-color: #39d68d;
   filter: blur(10vmin);
 }
 
@@ -196,10 +196,10 @@ body {
   bottom: 0;
   left: 50%;
   width: 8vmin;
-  height: 11vmin;
-  border-radius: 51% 49% 47% 53%/44% 45% 55% 69%;
-  background-color: #65e6cc;
-  background-image: linear-gradient(to top, #40bbab, #a7ffee);
+  height: 14vmin;
+  border-radius: 60% 60% 30% 30% / 60% 60% 40% 40%;
+  background-color: #ffffff;
+  background-image: linear-gradient(to top, #e7e7e7, #fafafa);
   transform-origin: bottom center;
   opacity: 0.9;
   box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.5);
@@ -207,54 +207,28 @@ body {
 
 /* .flower__leaf--1 a --4: posicionamento 3D individual de cada pétala */
 .flower__leaf--1 {
-  transform: translate(-10%, 1%) rotateY(40deg) rotateX(-50deg);
+  transform: translate(-20%, -0%) rotateY(60deg) rotateX(-10deg); /* direita */
 }
 .flower__leaf--2 {
-  transform: translate(-50%, -4%) rotateX(40deg);
+  transform: translate(-45%, -10%) rotateY(60deg) rotateX(20deg); /* meio alto direita */
 }
 .flower__leaf--3 {
-  transform: translate(-90%, 0%) rotateY(45deg) rotateX(50deg);
+  transform: translate(-70%, -0%) rotateY(125deg) rotateX(20deg); /* esquerda */
 }
 .flower__leaf--4 {
-  width: 8vmin;
-  height: 8vmin;
-  transform-origin: bottom left;
-  border-radius: 4vmin 10vmin 4vmin 4vmin;
-  transform: translate(0%, 18%) rotateX(70deg) rotate(-43deg);
-  background-image: linear-gradient(to top, #39c6d6, #a7ffee);
-  z-index: 1;
-  opacity: 0.8;
+  transform: translate(-45%, -0%) rotateY(50deg) rotateX(5deg); /* meio grande */
+}
+.flower__leaf--5 {
+  transform: translate(-45%, -10%) rotateY(60deg) rotateX(-10deg); /* meio alto  esquerda*/
 }
 
-/* .flower__white-circle: núcleo branco da flor */
-.flower__white-circle {
-  position: absolute;
-  left: -3.5vmin;
-  top: -3vmin;
-  width: 9vmin;
-  height: 4vmin;
-  border-radius: 50%;
-  background-color: #fff;
-}
 
-/* .flower__white-circle::after: padrão interno (linhas) do núcleo */
-.flower__white-circle::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 60%;
-  border-radius: inherit;
-  background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(67.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(112.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(112.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(22.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(22.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(157.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(67.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(67.5deg, rgba(0, 0, 0, 0.03) 0px, rgba(0, 0, 0, 0.03) 1px, transparent 1px, transparent 12px), linear-gradient(90deg, #ffeb12, #ffce00);
-}
 
 /* .flower__line: haste da flor com gradiente, largura/altura e animação de crescimento */
 .flower__line {
   height: 55vmin;
   width: 1.5vmin;
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(255, 255, 255, 0.2)), linear-gradient(to top, transparent 10%, #14757a, #39c6d6);
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), transparent, rgba(255, 255, 255, 0.2)), linear-gradient(to top, transparent 10%, #147a3e, #39d68d);
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
   animation: grow-flower-tree 4s backwards;
 }
@@ -270,7 +244,7 @@ body {
   height: var(--h);
   border-top-right-radius: var(--h);
   border-bottom-left-radius: var(--h);
-  background-image: linear-gradient(to top, rgba(20, 117, 122, 0.4), #39c6d6);
+  background-image: linear-gradient(to top, rgba(20, 117, 122, 0.4), #39d6a2);
 }
 
 /* .flower__line__leaf--1 a --6: posicionamento e rotação de cada folha na haste */
@@ -311,7 +285,7 @@ body {
   bottom: 0vmin;
   width: 1vmin;
   height: 1vmin;
-  background-color: #fffb00;
+  background-color: #ffffff;
   border-radius: 50%;
   filter: blur(0.2vmin);
   animation: light-ans 4s linear infinite backwards;
@@ -319,7 +293,7 @@ body {
 
 /* .flower__light:nth-child(odd): cor alternada para luzes ímpares */
 .flower__light:nth-child(odd) {
-  background-color: #23f0ff;
+  background-color: #ffff;
 }
 
 /* .flower__light--1 a --8: offsets e delays específicos de cada partícula de luz */
@@ -356,6 +330,8 @@ body {
   animation-delay: 3.5s;
 }
 
+
+
 /* Keyframes: definem todas as animações de crescer, mover e desabrochar */
 @keyframes grow-ans {
   0% {
@@ -389,7 +365,7 @@ body {
 }
 @keyframes moving-flower-1 {
   0%, 100% {
-    transform: rotate(2deg);
+    transform: rotate(6deg);
   }
   50% {
     transform: rotate(-2deg);
@@ -400,7 +376,7 @@ body {
     transform: rotate(18deg);
   }
   50% {
-    transform: rotate(14deg);
+    transform: rotate(10deg);
   }
 }
 @keyframes moving-flower-3 {
@@ -408,7 +384,7 @@ body {
     transform: rotate(-18deg);
   }
   50% {
-    transform: rotate(-20deg) rotateY(-10deg);
+    transform: rotate(-26deg) rotateY(-10deg);
   }
 }
 @keyframes blooming-leaf-right {
@@ -443,4 +419,93 @@ body {
 @keyframes twinkle {
   0%, 100% { opacity: 0.8; }
   50%      { opacity: 0.4; }
+}
+
+.flower--5 {
+  left: 80%;
+  transform: rotate(-10deg);
+  animation: moving-flower-5 4s linear infinite;
+}
+.flower--5 .flower__line {
+  height: 70vmin;
+  animation-delay: 1.2s;
+}
+/* delay do desabrochar */
+.flower__leafs--5 {
+  animation-delay: 2s;
+}
+/* delays das folhas no caule */
+.flower--5 .flower__line__leaf--1 { animation: blooming-leaf-right var(--fl-speed) 2.5s backwards; }
+.flower--5 .flower__line__leaf--2 { animation: blooming-leaf-right var(--fl-speed) 2.3s backwards; }
+.flower--5 .flower__line__leaf--3 { animation: blooming-leaf-left  var(--fl-speed) 2.1s backwards; }
+.flower--5 .flower__line__leaf--4 { animation: blooming-leaf-left  var(--fl-speed) 1.9s backwards; }
+
+/* keyframes para o balanço da flor 5 */
+@keyframes moving-flower-5 {
+  0%, 100% { transform: rotate(-6deg); }
+  50%      { transform: rotate(-14deg) rotateY(10deg); }
+}
+
+
+.flower--6 {
+  left: 20%;              /* aproxima da esquerda */
+  transform: rotate(-45deg);
+  animation: moving-flower-6 4s linear infinite;
+}
+
+/* caule da flor 6 */
+.flower--6 .flower__line {
+  height: 65vmin;
+  animation-delay: 1.3s;
+}
+
+/* delay no desabrochar das pétalas */
+.flower__leafs--6 {
+  animation-delay: 2.2s;
+}
+
+/* delays das folhas no caule */
+.flower--6 .flower__line__leaf--1 { animation: blooming-leaf-right var(--fl-speed) 2.7s backwards; }
+.flower--6 .flower__line__leaf--2 { animation: blooming-leaf-right var(--fl-speed) 2.5s backwards; }
+.flower--6 .flower__line__leaf--3 { animation: blooming-leaf-left  var(--fl-speed) 2.3s backwards; }
+.flower--6 .flower__line__leaf--4 { animation: blooming-leaf-left  var(--fl-speed) 2.1s backwards; }
+
+/* keyframes ajustados para balanço invertido */
+@keyframes moving-flower-6 {
+  0%, 100% { transform: rotate(-32deg); }
+  50%      { transform: rotate(-38deg) rotateY(-15deg); }
+}
+
+.flower--4 {
+  left: 90%;
+  transform: rotate(25deg);
+  animation: moving-flower-4 4s linear infinite;
+}
+
+/* caule da flor 4: altura e delay do crescimento */
+.flower--4 .flower__line {
+  height: 65vmin;
+  animation-delay: 1s;
+}
+
+/* delay no desabrochar das pétalas */
+.flower__leafs--4 {
+  animation-delay: 2s;
+}
+
+/* delays individuais das folhas no caule */
+.flower--4 .flower__line__leaf--1 { animation: blooming-leaf-right var(--fl-speed) 2.2s backwards; }
+.flower--4 .flower__line__leaf--2 { animation: blooming-leaf-right var(--fl-speed) 2.0s backwards; }
+.flower--4 .flower__line__leaf--3 { animation: blooming-leaf-left  var(--fl-speed) 1.8s backwards; }
+.flower--4 .flower__line__leaf--4 { animation: blooming-leaf-left  var(--fl-speed) 1.6s backwards; }
+
+/* keyframes afinados para um “sobe e desce” suave */
+@keyframes moving-flower-4 {
+  0%, 100% {
+    transform: rotate(30deg);
+  }
+  50% {
+    /* oscila 4° pra dentro e faz um leve giro em Y inverso */
+    transform: rotate(25deg) rotateY(-15deg);
+  }
 }
