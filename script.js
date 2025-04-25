@@ -1,69 +1,77 @@
+// registra GSAP MotionPathPlugin (se for usar GSAP)
 gsap.registerPlugin(MotionPathPlugin);
 
 let progress = 0;
-const progressBar = document.getElementById("progress-bar");
-const spaceButton = document.getElementById("SpaceButton");
-const containerEl = document.getElementById("container");
+const bar      = document.getElementById("progress-bar");
+const btn      = document.getElementById("SpaceButton");
+const cont     = document.getElementById("container");
+const page2    = document.getElementById("page2");
 
-document.addEventListener("keydown", (event) => {
-    if (event.code === "Space") {
-        event.preventDefault();
-        
-        if (progress < 100) {
-            progress += 3.33;
-            if (progress > 100) progress = 100;
-            animateSpaceButton();
-            spawnHearts();
-            progressBar.style.width = progress + "%";
-            progressBar.textContent = Math.floor(progress) + "%";
-
-            if (progress === 100) {
-                triggerFadeOut();
-            }
+document.addEventListener("keydown", (e) => {
+if (e.code === "Space") {
+    e.preventDefault();
+    if (progress < 100) {
+    progress += 3.33;
+    if (progress > 100) progress = 100;
+    btn.classList.add("clicked");
+    setTimeout(() => btn.classList.remove("clicked"), 200);
+    bar.style.width = progress + "%";
+    bar.textContent = Math.floor(progress) + "%";
+    spawnHearts();
+    if (progress === 100) swapPage();
         }
     }
 });
 
-function animateSpaceButton() {
-    spaceButton.classList.add("clicked");
-    setTimeout(() => {
-        spaceButton.classList.remove("clicked");
-    }, 100);
-}
-
 function spawnHearts() {
-    for (let i = 0; i < 5; i++) {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        document.body.appendChild(heart);
+for (let i = 0; i < 5; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    document.body.appendChild(heart);
 
-        // random size
-        const size = Math.random() * 15 + 10;
-        heart.style.setProperty("--heart-size", `${size}px`);
+    // tamanhos e cores aleatórias
+    const size = 10 + Math.random() * 15;
+    heart.style.setProperty("--heart-size", `${size}px`);
+    const colors = ["#ff4d6d", "#f15cd1", "#ff8fa3"];
+    heart.style.setProperty(
+    "--heart-color",
+      colors[Math.floor(Math.random() * colors.length)]
+    );
 
-        // random color
-        const colors = ["#ff4d6d", "#f15cd1", "#ff8fa3"];
-        heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    // animação GSAP em S
+    const startX = window.innerWidth * (0.8 + Math.random() * 0.2);
+    const startY = window.innerHeight + size;
+    heart.style.left = startX + "px";
+    heart.style.top  = startY + "px";
 
-        // start horizontal
-        heart.style.left = Math.random() * 100 + "%";
-
-        // GANHA DURAÇÃO MAIS LENTA
-        const duration = 5 + Math.random() * 5;  // 5s–10s
-        heart.style.setProperty("--heart-duration", `${duration}s`);
-
-        // opcional: um pequeno delay
-        const delay = Math.random() * 0.5;       // até 0.5s
-        heart.style.setProperty("--heart-delay", `${delay}s`);
-
-        heart.addEventListener("animationend", () => heart.remove());
+    gsap.to(heart, {
+      duration: 4 + Math.random() * 3,
+    ease: "power1.inOut",
+    motionPath: {
+        path: [
+        { x: startX,                             y: startY },
+        { x: startX - 100 - Math.random() * 50,  y: startY * 0.75 },
+        { x: startX + 80  + Math.random() * 50,  y: startY * 0.5  },
+        { x: startX - 60  - Math.random() * 30,  y: startY * 0.25 },
+        { x: startX,                             y: -50        }
+        ],
+        type:       "cubic",
+        autoRotate: true
+    },
+    onComplete: () => heart.remove()
+    });
     }
 }
 
-function triggerFadeOut() {
-    document.body.classList.add("fade-out");
-    document.body.addEventListener("animationend", () => {
-        document.body.innerHTML = "";
-    }, { once: true });
-    setTimeout(() => { window.location.href = "index2.html"; } , 1000);
+function swapPage() {
+  // 1) fade out da page1
+cont.classList.add("fade-out");
+cont.addEventListener(
+    "animationend",
+    () => {
+        cont.style.display = "none";
+        page2.style.display = "flex";
+    },
+    { once: true }
+  );
 }

@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-
-    <title>Te Amo ❤</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Te Amo ❤</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- polyfill Motion-Path (se você quiser usar animação CSS Path) -->
+  <script src="https://unpkg.com/motion-path-js/dist/motion-path.min.js"></script>
+  <!-- GSAP + MotionPathPlugin (se você preferir animação JS em S) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/MotionPathPlugin.min.js"></script>
 </head>
-<body>
-    <div class="container" id="container">
-        <div>
-            <button class="SpaceButton" id="SpaceButton">Espaço</button>
-        </div>
-    
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-        </div>
-    </div>
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/MotionPathPlugin.min.js"></script>
-    <script src="script.js" defer></script>
+<body>
+  <!-- === Página 1: Espaço + barra de progresso + corações === -->
+  <div id="container">
+    <button class="SpaceButton" id="SpaceButton">Espaço</button>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar">0%</div>
+    </div>
+  </div>
+
+  <!-- === Página 2: texto + polaroids (inicialmente escondida) === -->
+  <main id="page2">
+    <div class="text">Te amar sempre foi fácil</div>
+    <div>
+      <div class="polaroid1"><img src="polaroid1.jpeg" alt="1"></div>
+      <div class="polaroid2"><img src="polaroid2.jpeg" alt="2"></div>
+      <div class="polaroid3"><img src="polaroid3.jpeg" alt="3"></div>
+    </div>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
