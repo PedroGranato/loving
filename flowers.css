@@ -40,8 +40,8 @@ body {
 
 .moon {
   position: absolute;
-  top: 10%;
-  right: 15%;
+  top: 18%;
+  right: 8%;
   width: 120px;
   height: 120px;
   background: radial-gradient(
@@ -222,6 +222,20 @@ body {
   transform: translate(-45%, -10%) rotateY(60deg) rotateX(-10deg); /* meio alto  esquerda*/
 }
 
+.flower__leaf2 {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 8vmin;
+  height: 14vmin;
+  border-radius: 60% 60% 30% 30% / 60% 60% 40% 40%;
+  background-color: #ffffff;
+  background-image: linear-gradient(to top, #e747c4, #e8a2d9 );
+  transform-origin: bottom center;
+  opacity: 0.9;
+  box-shadow: inset 0 0 2vmin rgba(255, 255, 255, 0.5);
+}
+
 
 
 /* .flower__line: haste da flor com gradiente, largura/altura e animação de crescimento */
@@ -286,6 +300,17 @@ body {
   width: 1vmin;
   height: 1vmin;
   background-color: #ffffff;
+  border-radius: 50%;
+  filter: blur(0.2vmin);
+  animation: light-ans 4s linear infinite backwards;
+}
+
+.flower__light2 {
+  position: absolute;
+  bottom: 0vmin;
+  width: 1vmin;
+  height: 1vmin;
+  background-color: #e791e3;
   border-radius: 50%;
   filter: blur(0.2vmin);
   animation: light-ans 4s linear infinite backwards;
@@ -508,4 +533,82 @@ body {
     /* oscila 4° pra dentro e faz um leve giro em Y inverso */
     transform: rotate(25deg) rotateY(-15deg);
   }
+}
+
+.flower--4 .flower__leaf {
+  width: 6vmin;
+  height: 40vmin;
+  /* shape pontiagudo em cima, base fechada */
+  
+  background-image: linear-gradient(to top, #fff, #eee);
+  transform-origin: bottom center;
+  opacity: 0.95;
+}
+
+/* distribuir em arco: 6 pétalas */
+.flower--4 .flower__leaf--1 {
+  width: 5vmin;
+  height: 42vmin;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  transform: translate(-10%, 10000%) rotateY(0deg) rotateX(70deg);
+}
+.flower--4 .flower__leaf--2 {
+  width: 6vmin;
+  height: 30vmin;
+  border-radius: 60% 40% 0 0 / 120% 80% 0 0;
+  transform: translate(-35%, 1000%) rotateY(-30deg) rotateX(-35deg);
+}
+.flower--4 .flower__leaf--3 {
+  width: 7vmin;
+  height: 38vmin;
+  border-radius: 40% 60% 0 0 / 80% 120% 0 0;
+  transform: translate(-60%, 1000%) rotateY(0deg)   rotateX(60deg);
+}
+.flower--4 .flower__leaf--4 {
+  width: 5.5vmin;
+  height: 44vmin;
+  border-radius: 70% 70% 0 0 / 140% 140% 0 0;
+  transform: translate(-85%, -130%) rotateY(15deg)  rotateX(60deg);
+}
+.flower--4 .flower__leaf--5 {
+  width: 6.5vmin;
+  height: 30vmin;
+  border-radius: 65% 35% 0 0 / 130% 70% 0 0;
+
+  transform: translate(-135%, 0%) rotateY(45deg)  rotateX(60deg);
+}
+.flower--4 .flower__leaf--6 {
+  width: 7vmin;
+  height: 14vmin;
+  border-radius: 65% 35% 0 0 / 130% 70% 0 0;
+  transform: translate(-380%, -100%) rotateY(45deg)  rotateX(70deg);
+}
+
+svg {
+  width: 80%;
+  height: auto;
+  display: block;
+}
+
+  
+  svg path {
+  fill: none;
+  stroke: #ececec;
+  stroke-width: 2;
+}
+
+  
+  @keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+#pedido-svg {
+  position: absolute;
+  top: 40px;                
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;             
+  pointer-events: none;     
+  width: 80%;               
+  height: auto;
 }

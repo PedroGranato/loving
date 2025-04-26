@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pétala com clip-path Bézier</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fafafa;
+    }
+    .petal {
+      width: 100px;
+      height: 200px;
+      background: #e91e63;
+      /* define no clip-path uma curva que vai de cima pra baixo e fecha a forma */
+      clip-path: path(
+        "M50,0 
+         C70,30 10,140 50,200 
+         C20,140 120,60 50,0"
+      );
+      /* rota um pouco pra dar profundidade */
+      transform: rotate(0deg) rotateX(0deg) rotateY(20deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="petal"></div>
+</body>
+</html>
