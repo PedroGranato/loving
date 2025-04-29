@@ -1,4 +1,3 @@
-// registra GSAP MotionPathPlugin (se for usar GSAP)
 gsap.registerPlugin(MotionPathPlugin);
 
 let progress = 0;
@@ -16,7 +15,7 @@ if (e.code === "Space") {
     btn.classList.add("clicked");
     setTimeout(() => btn.classList.remove("clicked"), 200);
     bar.style.width = progress + "%";
-    bar.textContent = Math.floor(progress) + "%";
+    bar.textContent = "";            
     spawnHearts();
     if (progress === 100) swapPage();
         }
@@ -29,7 +28,6 @@ for (let i = 0; i < 5; i++) {
     heart.classList.add("heart");
     document.body.appendChild(heart);
 
-    // tamanhos e cores aleatórias
     const size = 10 + Math.random() * 15;
     heart.style.setProperty("--heart-size", `${size}px`);
     const colors = ["#ff4d6d", "#f15cd1", "#ff8fa3"];
@@ -38,11 +36,9 @@ for (let i = 0; i < 5; i++) {
       colors[Math.floor(Math.random() * colors.length)]
     );
 
-    // adiciona posição aleatória pelo left
     heart.style.left = Math.random() * (window.innerWidth -  parseInt(getComputedStyle(heart).width)) + 'px';
     heart.style.bottom = "0";
 
-    // animação GSAP em S
     const startX = Math.random() * (window.innerWidth - size);
     const startY = window.innerHeight + size;
     heart.style.left = startX + "px";
@@ -67,15 +63,97 @@ for (let i = 0; i < 5; i++) {
     }
 }
 
+function animateFirstThree() {
+    const first3 = document.querySelectorAll(".polaroid1, .polaroid2, .polaroid3");
+    first3.forEach((el, i) =>
+        setTimeout(() => el.classList.add("animate"), i * 200)
+    );
+    const totalInTime = 800 + 600;    
+    const exitDelay   = 2000;         
+    const outDuration = 500;          
+    setTimeout(() => {
+        first3.forEach((el, i) =>
+            setTimeout(() => el.classList.add("polaroid-out"), i * 100)
+        );
+    }, totalInTime + exitDelay);
+    setTimeout(() => {
+        const wrap = document.querySelector(".polaroids-wrapper.initial");
+        if (wrap) wrap.style.display = "none";
+    }, totalInTime + exitDelay + outDuration + 200);
+}
+
+function animateLastThree() {
+    const extraWrap = document.querySelector(".polaroids-wrapper.extra");
+    if (!extraWrap) return;
+    const last3 = extraWrap.querySelectorAll(".polaroid4, .polaroid5, .polaroid6");
+    extraWrap.classList.add("visible");
+    setTimeout(() => {
+        last3.forEach((el, i) =>
+            setTimeout(() => el.classList.add("animate"), i * 200)
+        );
+    }, 100);
+}
+
 function swapPage() {
-  // 1) fade out da page1
-cont.classList.add("fade-out");
-cont.addEventListener(
+  cont.classList.add("fade-out");
+  cont.addEventListener(
     "animationend",
     () => {
-        cont.style.display = "none";
-        page2.style.display = "flex";
+      cont.style.display = "none";
+      page2.classList.add("visible");
+
+      document.querySelector(".text").classList.add("animate-text");
+
+      animateFirstThree();
+
+      const delayForLast = 800 + 600 + 2000 + 500 + 200;
+      setTimeout(animateLastThree, delayForLast);
+
+      startTextCycle();
     },
     { once: true }
   );
+}
+
+const texts = ["Você me mostrou", "que amar é fácil", "quando é com você"];
+let ti = 0, ci = 0, deleting = false;
+const speed = 150, pause = 1000;
+
+function startTextCycle() {
+  const el = document.querySelector(".text");
+
+  function tick() {
+    const full = texts[ti];
+
+    if (!deleting) {
+      el.textContent = full.substring(0, ci + 1);
+      ci++;
+      if (ci === full.length) {
+        if (ti < texts.length - 1) {
+          deleting = true;
+          setTimeout(tick, pause);
+        } else {
+          setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+              window.location.href = 'flowers.html';
+            }, 500);
+          }, 1000);
+        }
+        return;
+      }
+    } else {
+      el.textContent = full.substring(0, ci - 1);
+      ci--;
+      if (ci === 0) {
+        deleting = false;
+        ti++;
+      }
+    }
+
+    setTimeout(tick, deleting ? speed / 2 : speed);
+  }
+
+  tick();
 }

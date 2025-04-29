@@ -1,4 +1,3 @@
-/* === Estilos Globais (página 1) === */
 html, body {
     display: flex;
     justify-content: center;
@@ -6,22 +5,18 @@ html, body {
     height: 100vh;
     background-color: #ecebeb;
     margin: 0;
-    overflow: hidden;  /* esconde scroll e saporra toda */
+    overflow: hidden; 
   }
   
-  /* fade-out do container (página 1) */
   #container.fade-out {
     animation: fadeOut 1s ease-out forwards;
   }
   @keyframes fadeOut {
     to {
       opacity: 0;
-      /* remover scale se puxar fixed */
-      /* transform: scale(0.95); */
     }
   }
   
-  /* botão “Espaço” */
   .SpaceButton {
     position: absolute;
     top: 50%; left: 50%;
@@ -40,7 +35,6 @@ html, body {
     box-shadow: 0 2px #949494;
   }
   
-  /* barra de progresso */
   .progress-container {
     width: 80%;
     background: #bbb;
@@ -56,16 +50,26 @@ html, body {
     height: 30px;
     width: 0;
     background: #f15cd1;
-    color: #fff;
+    color: transparent;
     text-align: center;
     line-height: 30px;
     border-radius: 25px 0 0 25px;
     position: relative;
     z-index: 3;
     transition: width .3s ease;
+    overflow: visible;
+  }
+  .progress-bar::after {
+    content: '❤';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
   }
   
-  /* coração puro-CSS */
   .heart {
     position: fixed;
     bottom: 0;
@@ -75,8 +79,8 @@ html, body {
     transform: rotate(-45deg);
     transform-origin: center;
     pointer-events: none;
-      opacity: 1;                                /* ajustar para ficar visível */
-    animation: floatS var(--heart-duration,6s) linear both;  /* ativa o movimento */
+      opacity: 1;
+    animation: floatS var(--heart-duration,6s) linear both;
   }
   .heart::before, .heart::after {
     content:"";
@@ -89,77 +93,152 @@ html, body {
     .heart::after  { top:0;    left:50% }
 
     #page2 {
-        display: none;                
-        flex-direction: column;       
-        justify-content: center;      
-        align-items: center;          
-        height: 100vh;                
-        padding: 20px;
-        overflow: visible;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      overflow: visible;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .text {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #333;
+      font-family: 'Courier New', monospace;
+      font-size: 60px;
+      color: #333;
+      opacity: 0;
+    }
+    
+    .polaroids-wrapper {
+      margin-top: 40vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      width: 100%;
+      overflow: visible;
+    }
+    
+
+#page2.visible {
+  overflow: visible;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.text.animate-text {
+  opacity: 1;
+  animation:
+    text-in 0.6s ease-out forwards,
+    typing 3s steps(24) 0.6s forwards,
+    blink-caret 0.6s step-end 3.6s infinite;
+}
+
+.polaroid1, .polaroid2, .polaroid3,
+.polaroid4, .polaroid5, .polaroid6 {
+  opacity: 0;
+  overflow: visible;
+}
+.polaroid1.animate { animation: polaroid1-in 0.8s ease-out 0.2s forwards; }
+.polaroid2.animate { animation: polaroid2-in 0.8s ease-out 0.4s forwards; }
+.polaroid3.animate { animation: polaroid3-in 0.8s ease-out 0.6s forwards; }
+
+.polaroid4.animate { animation: polaroid4-in 0.8s ease-out 0.2s forwards; }
+.polaroid5.animate { animation: polaroid5-in 0.8s ease-out 0.4s forwards; }
+.polaroid6.animate { animation: polaroid6-in 0.8s ease-out 0.6s forwards; }
+
+
+.text.animate-text {
+  animation:
+    text-in 0.6s ease-out forwards,
+    typing 3s steps(var(--chars), end) 0.6s forwards,
+    blink-caret 0.8s step-end infinite 0.6s;
+}
+
+@keyframes text-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: var(--chars)ch; }
+}
+
+@keyframes blink-caret {
+  50% { border-color: transparent; }
+}
+
+    .polaroids-wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 60px;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+      overflow: visible;
+    }
+    
+    .polaroids-wrapper.extra {
+      display: none;
+    }
+    .polaroids-wrapper.extra.visible {
+      display: flex;
     }
 
-.text {
-    font-family: 'Courier New', monospace;
-    font-size: 60px;
-    color: #333;
-    margin-bottom: 120px;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #333;
-    width: 0;
-    opacity: 0;
-    animation:
-        
-        text-in   0.8s ease-out         0.2s forwards,
-        typing    2s steps(30,end)      0.5s forwards,
-        blink-caret 0.7s step-end       2.5s infinite;
-}
-    
-    
-    @keyframes text-in {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0);     }
-}
-    
-    
-    @keyframes typing {
-    from { width: 0; }
-    to   { width: 24ch; }   
+.polaroids-wrapper.extra,
+.polaroids-wrapper.extra.visible {
+  display: flex;
+  overflow: visible !important;
+  padding-left: 80px;
+  padding-right: 80px;
+  box-sizing: border-box;
 }
 
-
-    @keyframes blink-caret {
-        50% { border-color: transparent; }
-    }
-main > div {
-    display: flex;
-    gap: 150px;
-    perspective: 600px;
-    overflow: visible;
+.polaroids-wrapper > div {
+  background: #fff;
+  padding: 20px 20px 60px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 2px 6px 10px rgba(0,0,0,0.2);
+  transform-origin: bottom center;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  opacity: 0;
+}
+.polaroids-wrapper > div img {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  
+}
+.polaroids-wrapper.extra > div img {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  
 }
 
-
-.polaroid1, .polaroid2, .polaroid3 {
-    background: #fff;
-    padding: 20px 20px 60px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 2px 6px 10px rgba(0,0,0,0.2);
-    display: inline-block;
-    transform-origin: bottom center;
-    opacity: 0;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-}
-.polaroid1 { animation: polaroid1-in 0.8s ease-out 0.2s forwards }
-.polaroid2 { animation: polaroid2-in 0.8s ease-out 0.4s forwards }
-.polaroid3 { animation: polaroid3-in 0.8s ease-out 0.6s forwards }
-
-.polaroid1 img, .polaroid2 img, .polaroid3 img {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
+.polaroids-wrapper,
+.polaroids-wrapper.extra,
+.polaroids-wrapper.extra.visible {
+  overflow: visible !important;
 }
 
 @keyframes polaroid1-in {
@@ -174,9 +253,81 @@ main > div {
     from { opacity:0; transform: rotateY(180deg) rotate(-3deg) translateY(200px) scale(.9) }
     to   { opacity:1; transform: rotate(-3deg) translateY(0) scale(1) }
 }
+@keyframes polaroid4-in {
+    from { opacity:0; transform: rotateY(180deg) rotate(8deg) translateY(200px) scale(.9) }
+    to   { opacity:1; transform: rotate(8deg) translateY(0) scale(1) }
+}
+@keyframes polaroid5-in {
+    from { opacity:0; transform: rotateY(180deg) rotate(-6deg) translateY(200px) scale(.9) }
+    to   { opacity:1; transform: rotate(-6deg) translateY(0) scale(1) }
+}
+@keyframes polaroid6-in {
+    from { opacity:0; transform: rotateY(180deg) rotate(5deg) translateY(200px) scale(.9) }
+    to   { opacity:1; transform: rotate(5deg) translateY(0) scale(1) }
+}
 
-/* animação de subida dos corações */
 @keyframes floatS {
   0%   { transform: translateY(0) rotate(-45deg); opacity: 1; }
   100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+}
+
+@keyframes polaroid-out {
+  from {
+    opacity: 1;
+    transform: rotate(0deg) translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotateY(180deg) translateY(50px) scale(0.5);
+  }
+}
+
+.polaroid-out {
+  animation: polaroid-out 0.5s ease-in forwards;
+}
+
+@keyframes polaroid4-out {
+  from { opacity: 1; transform: rotate(8deg) translateY(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(180deg) rotate(8deg) translateY(50px) scale(0.5); }
+}
+@keyframes polaroid5-out {
+  from { opacity: 1; transform: rotate(-6deg) translateY(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(180deg) rotate(-6deg) translateY(50px) scale(0.5); }
+}
+@keyframes polaroid6-out {
+  from { opacity: 1; transform: rotate(5deg) translateY(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(180deg) rotate(5deg) translateY(50px) scale(0.5); }
+}
+
+.polaroid4.polaroid-out {
+  animation: polaroid4-out 0.5s ease-in forwards;
+}
+.polaroid5.polaroid-out {
+  animation: polaroid5-out 0.5s ease-in forwards;
+}
+.polaroid6.polaroid-out {
+  animation: polaroid6-out 0.5s ease-in forwards;
+}
+
+@keyframes polaroid1-out {
+  from { opacity: 1; transform: rotate(-5deg) translateY(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(180deg) rotate(-5deg) translateY(50px) scale(0.5); }
+}
+@keyframes polaroid2-out {
+  from { opacity: 1; transform: rotate(4deg) translateY(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(180deg) rotate(4deg) translateY(50px) scale(0.5); }
+}
+@keyframes polaroid3-out {
+  from { opacity: 1; transform: rotate(-3deg) translateY(0) scale(1); }
+  to   { opacity: 0; transform: rotateY(180deg) rotate(-3deg) translateY(50px) scale(0.5); }
+}
+
+.polaroid1.polaroid-out {
+  animation: polaroid1-out 0.5s ease-in forwards !important;
+}
+.polaroid2.polaroid-out {
+  animation: polaroid2-out 0.5s ease-in forwards !important;
+}
+.polaroid3.polaroid-out {
+  animation: polaroid3-out 0.5s ease-in forwards !important;
 }

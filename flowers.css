@@ -1,4 +1,3 @@
-
 *,
 *::after,
 *::before {
@@ -662,25 +661,24 @@ body {
 
 .flower--1 {
   --sw-start: 10deg;
-  --sw-end: calc(var(--sw-start) - calc(var(--base-sway) * 0.6)); /* 6 - 12 = -6 */
+  --sw-end: calc(var(--sw-start) - calc(var(--base-sway) * 0.6));
 }
 
-/* pétala 2: 80% da amplitude */
 .flower--2 {
   --sw-start: 55deg;
-  --sw-end: calc(var(--sw-start) - calc(var(--base-sway) * 0.4)); /* 60 - 9.6 = 50.4 */
+  --sw-end: calc(var(--sw-start) - calc(var(--base-sway) * 0.4));
 }
 
 
 .flower--3 {
   --sw-start: -45deg;
-  --sw-end: calc(var(--sw-start) + calc(var(--base-sway) * 0.6)); /* -45 + 7.2 = -37.8 */
+  --sw-end: calc(var(--sw-start) + calc(var(--base-sway) * 0.6));
 }
 
 
 .flower--4 {
   --sw-start: 30deg;
-  --sw-end: calc(var(--sw-start) - calc(var(--base-sway) * 0.4)); /* 30 - 4.8 = 25.2 */
+  --sw-end: calc(var(--sw-start) - calc(var(--base-sway) * 0.4));
 }
 
 
