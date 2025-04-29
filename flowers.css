@@ -26,6 +26,14 @@ body {
   perspective: 1000px;
 }
 
+body.not-loaded #pedido-svg {
+  opacity: 0;
+}
+body:not(.not-loaded) #pedido-svg {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
 .night {
   position: fixed;
   inset: 0;
