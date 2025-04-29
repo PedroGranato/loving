@@ -38,8 +38,12 @@ for (let i = 0; i < 5; i++) {
       colors[Math.floor(Math.random() * colors.length)]
     );
 
+    // adiciona posição aleatória pelo left
+    heart.style.left = Math.random() * (window.innerWidth -  parseInt(getComputedStyle(heart).width)) + 'px';
+    heart.style.bottom = "0";
+
     // animação GSAP em S
-    const startX = window.innerWidth * (0.8 + Math.random() * 0.2);
+    const startX = Math.random() * (window.innerWidth - size);
     const startY = window.innerHeight + size;
     heart.style.left = startX + "px";
     heart.style.top  = startY + "px";
